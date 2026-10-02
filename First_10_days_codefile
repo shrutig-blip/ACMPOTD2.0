@@ -1,0 +1,81 @@
+
+
+
+#01-10-2006
+
+#include <iostream>
+#include <vector>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+int main(){
+    int n,m;
+    cin>>n>>m;
+    vector<string> matrix(n);
+    for(int i=0;i<n;i++){
+            cin>>matrix[i];
+    }
+    int minrow=n;
+    int maxrow=-1;
+    int mincol=m;
+    int maxcol=-1;
+    for(int i=0;i<n;i++){
+        for(int j=0;j<m;j++){
+            if(matrix[i][j]=='*'){
+                minrow=min(minrow,i);
+                maxrow=max(maxrow,i);
+                mincol=min(mincol,j);
+                maxcol=max(maxcol,j);
+            }
+        }
+    }
+    for(int i=minrow;i<=maxrow;i++){
+        for(int j=mincol;j<=maxcol;j++){
+            cout<<matrix[i][j];
+        }
+        cout<<endl;
+    }
+    return 0;
+}
+
+
+
+
+
+
+
+#03-10-2006
+
+#include <iostream>
+#include <climits>
+using namespace std;
+void findsecondsmallest(int arr[], int n){
+    if(n<2){
+        cout<<"NO";
+        return;
+    }
+    int smallest=arr[0];
+    int ssmallest=INT_MAX;
+    for(int i=1;i<n;i++){
+        if(arr[i]<smallest) {
+            ssmallest=smallest;
+            smallest=arr[i];
+        }
+        else if(arr[i]>smallest && arr[i]<ssmallest){
+            ssmallest=arr[i];
+        }
+    }
+    if(ssmallest==INT_MAX) cout<<"NO";
+    else cout<<ssmallest;
+    return;
+}
+int main(){
+    int n;
+    cin>>n;
+    int arr[n];
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+    findsecondsmallest(arr,n);
+}
