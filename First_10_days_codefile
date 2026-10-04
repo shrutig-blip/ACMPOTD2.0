@@ -1,7 +1,7 @@
 
 
 
-#01-10-2006
+#01-10-2026 (letter problem)
 
 #include <iostream>
 #include <vector>
@@ -45,7 +45,7 @@ int main(){
 
 
 
-#03-10-2006
+#03-10-2026 (second order statistics)
 
 #include <iostream>
 #include <climits>
@@ -78,4 +78,34 @@ int main(){
         cin>>arr[i];
     }
     findsecondsmallest(arr,n);
+}
+
+
+
+
+#04-10-2026 (reconnaissance problem)
+
+#include <iostream>
+#include <vector>
+#include <cstdlib>
+using namespace std;
+int findcount(vector<int> arr,int n, int q){
+    int count=0;
+    for(int i=0;i<n-1;i++){
+        for(int j=i+1;j<n;j++){
+            if(abs(arr[i]-arr[j])<=q) count++;
+        }
+    }
+    return count;
+}
+int main(){
+    int n,q;
+    cin>>n;
+    cin>>q;
+    vector<int> arr(n);
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+    cout<<2*(findcount(arr,n,q));
+    return 0;
 }
