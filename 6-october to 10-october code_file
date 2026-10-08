@@ -103,3 +103,149 @@ int main(){
     
 }
 
+
+#07-10-2026
+
+#Beginner: Army-run loop for rank b- rank a times, and keep adding val from the arr
+for the required position,to ans variable. 
+
+#include <iostream>
+using namespace std;
+
+int main(){
+    int n;
+    cin>>n;
+    int arr[n-1];
+    for(int i=0;i<(n-1);i++){
+        cin>> arr[i];
+    }
+    
+    int a,b;
+    cin>> a>> b;
+    int ans;
+    int i=a-1;
+    for(int j=0;j<(b-a);j++){
+        ans+=arr[i];
+        i++;
+        
+    }
+    
+    cout<<ans;
+    return 0;
+}
+
+
+#Intermediate: Pretty Integers-- check common element by running 2 for loops
+(TC wouldn't be too much, as both arr can contain maximum n values),
+if common is present, return it, 
+otherwise get minimum element from both arrays and make 2 digit smaller number from them and print it..
+
+
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int main(){
+    int n,m;
+    cin>> n>> m;
+    
+    int a[n];
+    int b[m];
+    for(int i=0;i<n;i++){
+        cin>>a[i];
+    }
+    for(int j=0;j<m;j++){
+        cin>>b[j];
+    }   
+    
+    int common=10;
+    for(int i=0;i<n;i++){
+        for(int j=0;j<m;j++){
+            if(a[i]==b[j]){
+                common=min(common,b[j]);
+            }
+        }
+    }
+    if(common!=10){
+        cout<<common;
+        return 0;
+    }
+    
+    int x=*min_element(a,a+n);
+    int y=*min_element(b,b+m);
+    cout<< min(x,y)*10+max(x,y);
+    return 0;   
+}
+
+
+#08-10-2026
+
+
+#Beginner: Translation- check length of both strings, if differ, then NO,
+otherwise, check run a loop, to match s and t characters in opposite directions.
+
+#include <iostream>
+#include <string>
+using namespace std;
+int main(){
+    string s;
+    cin>>s;
+    string t;
+    cin>>t;
+    if(s.length()!=t.length()){
+        cout<<"NO";
+        return 0;
+    }
+    int n=t.length()-1;
+    for(char ch:s){
+        if (ch!=t[n]){
+            cout<<"NO";
+            return 0;
+        }
+        n--;
+    }
+    cout<<"YES";
+    return 0;
+}
+
+
+#Intermediate: Greed-- sum the quantities that need to be added in 2 cans. , 
+find largest and slargest from capacities array while taking input of values, 
+then later check if sum<=(largest+slargest), then YES, otherwise NO. (as we need to fill the remaining quantity in any 2 cans, so we find the largest ones..)
+
+#include <iostream>
+using namespace std;
+
+int main(){
+    int n;
+    cin>> n;
+    long long vol=0;
+    int v=0;
+    for(int i=0;i<n;i++){
+        cin>>v;
+        vol+=v;
+    }
+    int arr[n];
+    int largest=0;
+    int slargest=0;
+    
+    for(int i=0;i<n;i++){
+        long long x;
+        cin>>x;
+        
+        if(x>largest){
+            slargest=largest;
+            largest=x;
+        }
+        else if(x>slargest){
+            slargest=x;
+        }
+    }
+    
+    if(largest+slargest >=vol){
+        cout<<"YES";
+        return 0;
+    }
+    cout<<"NO";
+    return 0;
+}
