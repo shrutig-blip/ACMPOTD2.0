@@ -249,3 +249,69 @@ int main(){
     cout<<"NO";
     return 0;
 }
+
+
+
+
+#09-10-2026
+
+#Beginner: Triangular numbers--> used the given formula, to check values from 0 to upto almost root(2n) ,
+if any values satisfies in the formula, i cannot be greater can root(2n) in order to satisfy the formula.
+then TC=O(root n), SC=O(1)
+
+#include <iostream>
+using namespace std;
+
+int main(){
+    int n;
+    cin>>n;
+    
+    for(int i=0;(1LL*i*(i+1))<=2LL*n;i++){
+        if((2LL*n)==(1LL*i*(i+1))){
+            cout<<"YES";
+            return 0;
+        }
+    }
+    cout<<"NO";
+    return 0;
+}
+
+#Intermediate: Theatre Square--> found minimum no. of squares of side a, will be required to cover length n, and similarly for length m, and multiplied them to obtain the answer, 
+(basically ceiling operation , but nor directly, by using elaborated calculations)--> can also be done directly in 2 lines(as mentioned below)
+TC=O(1), SC=O(1)
+
+
+#include <iostream>
+using namespace std;
+
+int main(){
+    int n,m;
+    cin>>n>>m;
+    long long a;
+    cin>>a;
+    
+    long long n_ans=0;
+    long long nleft=n;
+    if(nleft>0 && nleft>=a){
+        n_ans+=(nleft/a);
+        nleft-=((nleft/a)*a);
+    }
+    if(nleft>0 && nleft<a) n_ans++; 
+    
+    long long m_ans=0;
+    long long mleft=m;
+    if(mleft>0 && mleft>=a){
+        m_ans+=(mleft/a);
+        mleft-=((mleft/a)*a);
+    }
+    if(mleft>0 && mleft<a) m_ans++;
+    long long ans=n_ans*m_ans;
+    cout<<ans;
+    return 0;
+}
+
+
+//can directly do it like this, instead of elaborated ceiling expression-> both ways are O(1) TC & O(1) SC
+long long n_ans=(n+a-1)/a;
+long long m_ans=(m+a-1)/a;
+cout<<n_ans*m_ans;
