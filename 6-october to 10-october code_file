@@ -315,3 +315,93 @@ int main(){
 long long n_ans=(n+a-1)/a;
 long long m_ans=(m+a-1)/a;
 cout<<n_ans*m_ans;
+
+
+#10-10-2026
+
+#Beginner-Sleuth
+//TC=O(N) for worst case
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main(){
+    string s;
+    getline(cin,s);
+    
+    int n=s.length();
+    
+    for(int i=n-1;i>=0;i--){
+        if(s[i]=='?' || s[i]==' '){
+            continue;
+        }
+        else if(string("aeiouyAEIOUY").find(s[i])!=string::npos){
+            cout<<"YES";
+            break;
+        }
+        else{
+            cout<<"NO";
+            break;
+        } 
+    }
+    return 0;
+}
+
+
+
+#Intermediate- shortest path of king
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <cstdlib>
+using namespace std;
+
+int main(){
+    string a, b;
+    cin>> a >> b;
+    
+    int x=b[0]-a[0];
+    int y=b[1]-a[1];
+    
+    int n=max(abs(x),abs(y));
+    cout<<n<<endl;
+    
+    while(x!=0 || y!=0){
+        
+        if(x<0){
+            cout<<"L";
+            x++;
+        } 
+        else if(x>0){
+            cout<<"R";
+            x--;
+        }
+        if(y>0){
+            cout<<"U";
+            y--;
+        } 
+        else if(y<0){
+            cout<<"D";
+            y++;
+        }
+        cout<<endl;
+    }
+    return 0;   
+}
+
+
+#11-10-2026
+
+#Beginner- Domino Piling
+//TC=O(1) , SC=O(1)
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main(){
+    int n,m;
+    cin>> n >>m;
+    
+    cout<<((n*m)/2);
+    return 0;
+}
